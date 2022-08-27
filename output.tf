@@ -15,4 +15,4 @@ output "admin_password" {
   sensitive = true
 }
 
-# terraform output -raw admin_password
+# terraform output admin_password
