@@ -5,7 +5,7 @@ Variables are in variables.tf
 - Admin user
 - Resource Group prefix
 
-The admin password is random generated and can only be retrieved after "terraform apply" using "terraform output -raw admin_password" if needed. Since the ssh public key is installed, it shouldn't be needed and can easily be changed.
+The admin password is random generated and can only be retrieved after "terraform apply" using "terraform output admin_password" if needed. Since the ssh public key is installed, it shouldn't be needed and can easily be changed.
 
 Note: Change "disable_password_authentication     = true" for production.
 
