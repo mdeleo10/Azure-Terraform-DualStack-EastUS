@@ -1,9 +1,12 @@
-This Terraform template creeates in Azure a Dual Stack (IPv4/IPv6) Ubuntu 20.04 LTS Server
+# This Terraform template deploys in Azure a Dual Stack (IPv4/IPv6) Ubuntu 20.04 LTS Virtual Machine
 
-Variables are in variables.tf
-- Deployment region
-- Admin user
-- Resource Group prefix
+Steps needed before deploying
+- edit the variables.tf file for region, Admin user and Resource Group prefix
+- edit main.tf for rsa_id.pub location
+- edit azure-ubuntu-boot.sh for initialization commands (follows cloud-init rules)
+- az login
+- terraform init
+- terraform apply
 
 The admin password is random generated and can only be retrieved after "terraform apply" using "terraform output admin_password" if needed. Since the ssh public key is installed, it shouldn't be needed and can easily be changed.
 
