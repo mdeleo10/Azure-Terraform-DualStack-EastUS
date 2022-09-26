@@ -2,6 +2,7 @@
 sudo apt update
 sudo apt upgrade -y
 sudo apt install net-tools
+sudo apt install whois
 sudo apt install php -y  
 sudo apt-get install -y apache2
 sudo apt install libapache2-mod-php7.4
