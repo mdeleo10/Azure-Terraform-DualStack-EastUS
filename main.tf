@@ -18,7 +18,7 @@ resource "azurerm_resource_group" "rg" {
 
 # Create virtual network
 resource "azurerm_virtual_network" "myterraformnetwork" {
-  name                = "ubuntu-Vnet"
+  name                = "ubuntu-Vnet-${var.resource_group_location}"
   address_space       = ["10.0.0.0/16","ace:cab:deca::/48"]
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -26,7 +26,7 @@ resource "azurerm_virtual_network" "myterraformnetwork" {
 
 # Create subnet
 resource "azurerm_subnet" "myterraformsubnet" {
-  name                 = "ubuntu-Subnet"
+  name                 = "ubuntu-Subnet-${var.resource_group_location}"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.myterraformnetwork.name
   address_prefixes     = ["10.0.1.0/24","ace:cab:deca:1::/64"]
@@ -34,7 +34,7 @@ resource "azurerm_subnet" "myterraformsubnet" {
 
 # Create public IPs
 resource "azurerm_public_ip" "myterraformpublicip" {
-  name                = "ubuntu-PublicIP"
+  name                = "ubuntu-PublicIP-${var.resource_group_location}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   allocation_method   = "Static"
@@ -45,7 +45,7 @@ resource "azurerm_public_ip" "myterraformpublicip" {
 # Create public IPv6s
 
 resource "azurerm_public_ip" "myterraformpublicipv6" {
-  name                = "ubuntu-PublicIPv6"
+  name                = "ubuntu-PublicIPv6-${var.resource_group_location}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   allocation_method   = "Static"
@@ -57,7 +57,7 @@ resource "azurerm_public_ip" "myterraformpublicipv6" {
 
 # Create Network Security Group and rule
 resource "azurerm_network_security_group" "myterraformnsg" {
-  name                = "ubuntu-NetworkSecurityGroup"
+  name                = "ubuntu-NetworkSecurityGroup-${var.resource_group_location}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
@@ -114,7 +114,7 @@ resource "azurerm_network_security_group" "myterraformnsg" {
 
 # Create network interface
 resource "azurerm_network_interface" "myterraformnic" {
-  name                = "ubuntu-NIC"
+  name                = "ubuntu-NIC-${var.resource_group_location}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
@@ -175,17 +175,15 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   size                  = "Standard_B1s"
 
   os_disk {
-    name                 = "ubuntu-OsDisk"
+    name                 = "ubuntu--${var.resource_group_location}-OsDisk"
     caching              = "ReadWrite"
     storage_account_type = "Premium_LRS"
   }
 
   source_image_reference {
     publisher  = "Canonical"
-#    offer     = "UbuntuServer"
-     offer     = "0001-com-ubuntu-server-focal"
-#    sku       = "18.04-LTS"
-     sku       = "20_04-lts-gen2"
+    offer      = "0001-com-ubuntu-server-jammy"
+    sku        = "22_04-lts"
     version    = "latest"
   }
 
