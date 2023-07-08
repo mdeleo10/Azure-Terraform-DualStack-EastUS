@@ -21,3 +21,4 @@ The file azure-ubuntu-boot.sh contains bootstrapping commands to configure the s
 - configure php mod for apache
 - copy from git repository an index.php file
 
+
