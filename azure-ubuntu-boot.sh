@@ -5,8 +5,8 @@ sudo apt install net-tools
 sudo apt install whois
 sudo apt install php -y  
 sudo apt-get install -y apache2
-sudo apt install libapache2-mod-php7.4
-sudo a2enmod php7.4
+sudo apt install libapache2-mod-php8.3
+sudo a2enmod php8.3
 sudo systemctl reload apache2
 sudo systemctl enable apache2
 # Write /var/www/html/index.php file
